@@ -1,9 +1,7 @@
 # forms
 
-Yep. Another react forms library. I just had to add my own to the list.
-
-The main aim of this library was to provide the bare basics that you would want in a forms library. This is perfect if you want full control
-of the input components and validation steps in your form.
+Yep. Another forms library for react. I just had to add my own to the never ending list of form libraries. Just finding a name took longer than the time
+spent writing this library.
 
 ## Usage example
 
@@ -53,3 +51,6 @@ class App extends Component {
     }
 }
 ```
+
+## API
+

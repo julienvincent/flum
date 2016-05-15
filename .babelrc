@@ -1,4 +1,9 @@
 {
-    "presets": ["es2015", "babel-preset-stage-0"],
-    "ignore": ["lib/*"]
+  "presets": [
+    "es2015",
+    "babel-preset-stage-0"
+  ],
+  "ignore": [
+    "lib/*"
+  ]
 }
