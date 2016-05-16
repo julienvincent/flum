@@ -52,7 +52,7 @@ Fields will be in a namespace according to their `id`. For instance, a field wit
 {
     user: {
         firstname: {
-            valid: false/false,
+            valid: true/false,
             errors: [...],
             value: ''
         }
@@ -67,27 +67,29 @@ Called when the form is submitted. Submitting the form first checks each fields 
 returns an object with the following properties:
 
 + `valid [boolean]` - Weather all fields in the form have passed their respective validation requirements or not.
-+ `state [object]` - The state of the form. Follows the above specified pattern.
++ `state [object]` - The state of the form. Follows the above state pattern.
 
 ##### `validators(validators)`
 
 If you would like to specify your own validators, then you can provide them here. Accepts an object whose keys are the names of the validators and whose values are functions that must
-return a validation object. The validators get given a `value` as the first argument, and component specified validator properties as all following parameters. For instance `min:20` will call
-the `min` validator with the fields `value` as the first argument and `20` as its second argument. The returned validation object should have the following properties:
+return a validation object. The validators get given a `value` as the first argument, and component specified validator properties as all following parameters. For instance, if a
+component defines a validation of `min:20`- then the `min` validator will be called with parameters `value` as the first argument and `20` as the second argument.
+The returned validation object should have the following properties:
 
 + `valid [boolean]` - Weather or not the validation passed.
-+ `error [string]` - The error to give to add to state.
++ `error [string]` - The error to add to the fields state.
 
 ##### `getFields(getter)`
 
-A utility method to allow access to the forms fields on call. Accepts a getter function which provides a function to fetch the forms state as its first parameter.
+A utility method to allow access to the forms fields on call. This prop will be called with a getter function as its first argument. The getter function, when called, returns the current
+state of the form.
 
 Here is an example of its usage:
 ```javascript
 class App extends Component {
 
     someMethod() {
-        this.getFields() // The state of the form at this moment
+        this.getFields() // The current state of the form
     }
 
     render() {
@@ -100,11 +102,11 @@ class App extends Component {
 
 #### Context
 
-The component facing API is provided via context. Children have access to it via a `form` context of type object.
+The component facing API is provided via context. Children have access to it by adding `form` to their context.
 
 ##### `register(component)`
 
-Allows the component to register itself with the parent form so that the form is aware of its fields. Must provide an object containing the following properties:
+Allows the component to register itself with the Form. Must provide an object containing the following properties:
 
 + `id [string]` - The id of the components. This property is used to identify the component in the forms state and must be unique. `Required`
 + `validation [string]` - The validation rules that should be applied to the component. `Optional`
@@ -174,7 +176,7 @@ class Input extends Component {
 }
 ```
 
-# Example
+# Examples
 
 ```
 $ npm i
