@@ -1,7 +1,7 @@
 # react-basic-forms
 
-Yep. Another forms library for react. I just had to add my own to the never ending list of form libraries. This one aims at solving the very basics
-problem of a form - validation, and only validation - while giving the developer full control over the form components. The only form component
+Yep. Another forms library for react. I just had to add my own to the never ending list of form libraries. This one aims at solving the very basic
+problem of a form - validation - while giving the developer full control over the form components. The only form component
 provided is a simple Input component, and is only meant as an example of how to use the Form API.
 
 ## Usage example
