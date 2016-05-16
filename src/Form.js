@@ -202,7 +202,9 @@ class Form extends Component {
     register = opts => this.registeredComponents.push(opts)
 
     render() {
-        return $('form', {onSubmit: this.submit},
+        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields"])
+        
+        return $('form', {...props, onSubmit: this.submit},
             this.props.children
         )
     }
