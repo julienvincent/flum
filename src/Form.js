@@ -199,7 +199,12 @@ class Form extends Component {
         }
     }
 
-    register = opts => this.registeredComponents.push(opts)
+    register = opts => {
+        _.forEach(this.registeredComponents, ({id}, i) => {
+            if (id == opts.id) this.registeredComponents.splice(i, 1)
+        })
+        this.registeredComponents.push(opts)
+    }
 
     render() {
         const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields"])
