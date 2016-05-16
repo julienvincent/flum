@@ -47,15 +47,23 @@ const validators = {
     },
 
     numeric: value => {
-        if (value == '' || /[0-9]/.test(value)) {
+        if (value == '' || /^[0-9]*$/.test(value)) {
             return reply()
         } else {
             return reply("Can only contain numbers")
         }
     },
+    
+    string: value => {
+        if (value == '' || /[A-z !@#$%¨&*()-=+/*.]/.test(value)) {
+            return reply()
+        } else {
+            return reply("Cannot contain numbers")
+        }
+    },
 
     alphanumeric: value => {
-        if (value == '' || /[0-9A-z]/.test(value)) {
+        if (value == '' || /^[A-z0-9]*$/.test(value)) {
             return reply()
         } else {
             return reply("Can only contain numbers and letters")
