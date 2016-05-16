@@ -87,7 +87,8 @@ Default validators include:
 + `min:x` - Must contain at least `x` characters.
 + `max:x` - Must container less than `x` characters.
 + `between:x:y` - Must be between `x` and `y` characters long.
-+ `matches:id` - Must contain the same value as the field belonging to `id`.
++ `matches:id` - Must contain the same value as the field belonging to `id`. (checked on form submission)
++ `required` - The field is required. (checked on form submission)
 + `email` - Must be a valid email address.
 + `equals:x1:x2:x3...` - Must contain the same value as one of the given parameters.
 
