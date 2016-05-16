@@ -122,7 +122,7 @@ The component facing API is provided via context. Children have access to it by 
 Allows the component to register itself with the Form. Must provide an object containing the following properties:
 
 + `id [string]` - The id of the components. This property is used to identify the component in the forms state and must be unique. `Required`
-+ `validation [string]` - The validation rules that should be applied to the component. `Optional`
++ `validation [string]` - The validation rules that should be applied to the component. Multiple validation rules can be separated with `|`. `Optional`
 + `validators [object]` - A collection of custom validators that the component might want to provide. These validators take preference over the default. `Optional`
 + `isEmpty [function]` - A function that must return `true` or `false` depending weather the field component has a value. When validating the form, the Form API expects field values
 to be `strings`. If your custom components provides some other value type, like an array or object, then you will need implement this function. `Optional`
