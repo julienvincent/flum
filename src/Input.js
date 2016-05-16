@@ -13,15 +13,13 @@ class Input extends Component {
     }
 
     static defaultProps = {
-        validation: '',
-        onChange: () => {}
+        validation: ''
     }
 
     componentWillMount() {
         this.context.form.register({
             id: this.props.id,
-            validation: this.props.validation,
-            validators: {}
+            validation: this.props.validation
         })
     }
 

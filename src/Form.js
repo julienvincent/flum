@@ -17,7 +17,7 @@ class Form extends Component {
                 onChange: this.onChange,
                 select: this.select,
                 state: () => this.state,
-                validate: this.validate,
+                validate: (id, value) => this.validate(_.find(this.registeredComponents, comp => comp.id == id), value),
                 register: this.register
             }
         }
@@ -26,13 +26,16 @@ class Form extends Component {
     static propTypes = {
         onSubmit: PropTypes.func,
         onChange: PropTypes.func,
-        validators: PropTypes.objectOf(PropTypes.func)
+        validators: PropTypes.objectOf(PropTypes.func),
+        getFields: PropTypes.func
     }
 
     static defaultProps = {
         onChange: () => {
         },
         onSubmit: () => {
+        },
+        getFields: () => {
         }
     }
 
@@ -46,6 +49,8 @@ class Form extends Component {
 
     componentWillMount() {
         this.updateValidators()
+
+        this.props.getFields(() => this.state)
     }
 
     updateValidators(props) {

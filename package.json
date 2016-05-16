@@ -1,5 +1,5 @@
 {
-  "name": "react-basic-form",
+  "name": "react-basic-forms",
   "version": "0.0.1",
   "description": "Yep. Another forms library for react.",
   "main": "lib/index.js",
@@ -28,5 +28,17 @@
     "react-dom": "^15.0.2",
     "webpack": "^1.13.0",
     "webpack-dev-middleware": "^1.6.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/julienvincent/react-basic-forms.git"
+  },
+  "keywords": [
+    "react",
+    "forms"
+  ],
+  "bugs": {
+    "url": "https://github.com/julienvincent/react-basic-forms/issues"
+  },
+  "homepage": "https://github.com/julienvincent/react-basic-forms#readme"
 }
