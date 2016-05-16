@@ -79,6 +79,18 @@ The returned validation object should have the following properties:
 + `valid [boolean]` - Weather or not the validation passed.
 + `error [string]` - The error to add to the fields state.
 
+Default validators include:
+
++ `numeric` - Can only contain numbers.
++ `alphanumeric` - Can contain both numbers and letters.
++ `string` - Cannot contain numbers.
++ `min:x` - Must contain at least `x` characters.
++ `max:x` - Must container less than `x` characters.
++ `between:x:y` - Must be between `x` and `y` characters long.
++ `matches:id` - Must contain the same value as the field belonging to `id`.
++ `email` - Must be a valid email address.
++ `equals:x1:x2:x3...` - Must contain the same value as one of the given parameters.
+
 ##### `getFields(getter)`
 
 A utility method to allow access to the forms fields on call. This prop will be called with a getter function as its first argument. The getter function, when called, returns the current

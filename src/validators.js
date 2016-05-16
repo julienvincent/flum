@@ -1,3 +1,5 @@
+import _ from 'lodash'
+
 const reply = error => {
     if (error) {
         return {
@@ -76,6 +78,14 @@ const validators = {
             return reply()
         } else {
             return reply("Must be a valid email")
+        }
+    },
+    
+    equals: (value, ...values) => {
+        if (_.find(values, val => val == value)) {
+            return reply()
+        } else {
+            return reply("Invalid")
         }
     }
 }
