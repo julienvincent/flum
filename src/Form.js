@@ -134,7 +134,7 @@ class Form extends Component {
 
     values(state) {
         const flatten = _state => {
-            if (_state.value) return _state.value
+            if (_state.value !== undefined) return _state.value
             return _.mapValues(_state, flatten)
         }
         return _.mapValues(state, flatten)
