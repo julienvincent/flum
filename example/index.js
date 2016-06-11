@@ -7,12 +7,17 @@ class App extends Component {
 
     onSubmit = fields => {
         console.log(fields.valid)
+        console.log(fields.state.values())
+    }
+
+    onChange = state => {
+        console.log(state.values())
     }
 
     render() {
         return (
             $('div', {},
-                $(Form, {onSubmit: this.onSubmit, getFields: getter => this.getFields = getter, onChange: state => {}},
+                $(Form, {onSubmit: this.onSubmit, getFields: getter => this.getFields = getter, onChange: this.onChange},
                     $('div', {},
                         $(Input, {id: 'user.firstname', validation: 'numeric|required|min:20'}),
 

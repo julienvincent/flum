@@ -124,11 +124,20 @@ class Form extends Component {
                 }
             })
         })
+        state.__proto__.values = this.values.bind(this, state)
 
         this.props.onSubmit({
             valid,
             state
         })
+    }
+
+    values(state) {
+        const flatten = _state => {
+            if (_state.value) return _state.value
+            return _.mapValues(_state, flatten)
+        }
+        return _.mapValues(state, flatten)
     }
 
     select = id => _.get(this.state, id, {value: null, errors: [], valid: true})
@@ -169,7 +178,11 @@ class Form extends Component {
         this.setInputState(id, {
             ...validation,
             value
-        }, () => onChange(this.state))
+        }, () => {
+            const state = {...this.state}
+            state.__proto__.values = this.values.bind(this, state)
+            onChange(state)
+        })
     }
 
     validate = (component, value) => {
