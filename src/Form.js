@@ -124,7 +124,7 @@ class Form extends Component {
                 }
             })
         })
-        state.__proto__.flatten = this.flatten.bind(this, state)
+        state.flatten = this.flatten.bind(this, state)
 
         this.props.onSubmit({
             valid,
@@ -177,7 +177,7 @@ class Form extends Component {
             value
         }, () => {
             const state = {...this.state}
-            state.__proto__.flatten = this.flatten.bind(this, state)
+            state.flatten = this.flatten.bind(this, state)
             onChange(state)
         })
     }
