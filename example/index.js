@@ -7,11 +7,11 @@ class App extends Component {
 
     onSubmit = fields => {
         console.log(fields.valid)
-        console.log(fields.state.values())
+        console.log(fields.state.flatten())
     }
 
     onChange = state => {
-        console.log(state.values())
+        console.log(state.flatten())
     }
 
     render() {

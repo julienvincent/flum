@@ -45,7 +45,7 @@ an object containing the following properties.
 + `valid [boolean]` - Weather the field has passed its validation or not.
 + `errors [array]` - An array of validation errors. Empty if all validation has passed.
 + `value [any]` - The input components proposed value.
-+ `prototype.values [function]` - A function that returns the flat-mapped version of state.
++ `prototype.flatten [function]` - A function that returns the flat-mapped version of state.
 
 Fields will be in a namespace according to their `id`. For instance, a field with an id of `user.firstname` will yield a state tree of:
 

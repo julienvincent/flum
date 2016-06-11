@@ -124,7 +124,7 @@ class Form extends Component {
                 }
             })
         })
-        state.__proto__.values = this.values.bind(this, state)
+        state.__proto__.flatten = this.flatten.bind(this, state)
 
         this.props.onSubmit({
             valid,
@@ -132,12 +132,9 @@ class Form extends Component {
         })
     }
 
-    values(state) {
-        const flatten = _state => {
-            if (_state.value !== undefined) return _state.value
-            return _.mapValues(_state, flatten)
-        }
-        return _.mapValues(state, flatten)
+    flatten(state, search = false) {
+        if (search && state.value !== undefined) return state.value
+        return _.mapValues(state, val => this.flatten(val, true))
     }
 
     select = id => _.get(this.state, id, {value: null, errors: [], valid: true})
@@ -180,7 +177,7 @@ class Form extends Component {
             value
         }, () => {
             const state = {...this.state}
-            state.__proto__.values = this.values.bind(this, state)
+            state.__proto__.flatten = this.flatten.bind(this, state)
             onChange(state)
         })
     }
