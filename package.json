@@ -1,6 +1,6 @@
 {
   "name": "react-basic-forms",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Yep. Another forms library for react.",
   "main": "lib/index.js",
   "directories": {
