@@ -8,7 +8,7 @@ const reply = error => {
         }
     }
 
-    return {valid: true}
+    return true
 }
 
 const validators = {

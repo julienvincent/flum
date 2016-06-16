@@ -196,7 +196,10 @@ class Form extends Component {
 
             if (validator) {
                 const _res = validator(value, ..._.without(requirement, requirement[0]))
-                if (!_res.valid) {
+                if (!_res) {
+                    valid = false
+                    errors.push(requirement[0])
+                } else if (_res !== true && !_res.valid) {
                     valid = false
                     errors.push(_res.error)
                 }
