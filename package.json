@@ -1,7 +1,7 @@
 {
-  "name": "react-basic-forms",
+  "name": "react-context-form",
   "version": "0.1.6",
-  "description": "Yep. Another forms library for react.",
+  "description": "A forms library for react that provides its API via context",
   "main": "lib/index.js",
   "directories": {
     "example": "example"
@@ -10,7 +10,12 @@
     "start": "babel-node example/server",
     "lint": "eslint src; exit 0",
     "build": "rimraf lib && babel src -d lib",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "docs:clean": "rm -rf _book",
+    "docs:prepare": "gitbook install",
+    "docs:make": "npm run docs:prepare && gitbook build",
+    "docs:watch": "npm run docs:prepare && gitbook serve",
+    "docs:publish": "npm run docs:clean && npm run docs:make && cd _book && git init && git add . && git commit -m 'docs' && git checkout -b gh-pages && git push git@github.com:julienvincent/react-basic-forms gh-pages --force && cd ../ && npm run docs:clean"
   },
   "author": "Julien Vincent",
   "license": "MIT",
@@ -31,14 +36,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/julienvincent/react-basic-forms.git"
+    "url": "git+https://github.com/julienvincent/react-context-form.git"
   },
   "keywords": [
     "react",
-    "forms"
+    "forms",
+    "form",
+    "context",
+    "validation"
   ],
   "bugs": {
-    "url": "https://github.com/julienvincent/react-basic-forms/issues"
+    "url": "https://github.com/julienvincent/react-context-form/issues"
   },
-  "homepage": "https://github.com/julienvincent/react-basic-forms#readme"
+  "homepage": "https://github.com/julienvincent/react-context-form#readme"
 }

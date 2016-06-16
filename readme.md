@@ -1,4 +1,6 @@
-# react-basic-forms
+# react-context-form
+
+A forms library for react that provides its API via context
 
 Yep. Another forms library for react. I just had to add my own to the never ending list of form libraries. This one aims at solving the very basic
 problem of a form - validation - while giving the developer full control over the form components. The only form component
@@ -7,23 +9,33 @@ provided is a simple Input component, and is only meant as an example of how to 
 ## Usage example
 
 ```javascript
-import {Form, Input} from 'forms'
+import { Form, Input } from 'react-context-form'
 
 class App extends Component {
 
+    onChange = state => {
+        // do something with state on change
+    }
+
+    onSubmit = checkedState => {
+        const {valid, state} = checkedState
+
+        if (valid) {
+            post(state.flatten())
+        }
+    }
+
     render() {
-        return Form({onSubmit: checkedState => {}, onChange: state => {}, validators: {
-            equals: (value, pattern) => {
-                if (value == pattern) {
-                    return {valid: true}
-                }
-                return {
-                    valid: false,
-                    error: `must equal ${pattern}`
-                }
-            }
-        }},
-            Input({id: 'name', validation: 'alphanumeric|min:10|equals:John|required'})
+        return (
+            <Form
+                onSubmit={this.onSubmit}
+                onChange={this.onChange}>
+
+                <Input
+                    id="name"
+                    validation="alphanumeric|min:10|required">
+                </Input>
+            </Form>
         )
     }
 }

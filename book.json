@@ -1,0 +1,31 @@
+{
+  "gitbook": "2.5.2",
+  "title": "React Context Form",
+  "structure": {
+    "summary": "docs/readme.md",
+    "readme": "readme.md"
+  },
+  "plugins": [
+    "prism",
+    "-highlight",
+    "editlink",
+    "github",
+    "anchors",
+    "ga"
+  ],
+  "styles": {
+    "website": "docs/styles/website.css"
+  },
+  "pluginsConfig": {
+    "editlink": {
+      "base": "https://github.com/julienvincent/react-context-form/tree/master",
+      "label": "edit"
+    },
+    "github": {
+      "url": "https://github.com/julienvincent/react-context-form"
+    },
+    "ga": {
+      "token": "UA-53097839---3"
+    }
+  }
+}

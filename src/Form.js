@@ -134,7 +134,7 @@ class Form extends Component {
 
     flatten(state, search = false) {
         if (search && state.value !== undefined) return state.value
-        return _.mapValues(state, val => this.flatten(val, true))
+        return _.mapValues(_.omitBy(state, val => typeof val === 'function'), val => this.flatten(val, true))
     }
 
     select = id => _.get(this.state, id, {value: null, errors: [], valid: true})

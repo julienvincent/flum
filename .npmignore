@@ -4,3 +4,7 @@ src
 .babelrc
 .eslintrc
 !lib
+
+_book
+
+docs
