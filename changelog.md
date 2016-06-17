@@ -1,7 +1,9 @@
-# Unpublished
+# 0.2.0
 
-+ Renamed library to react-context-form
++ Renamed library to flum.
++ Wrote some docs.
++ Validators can now return true or false.
 
-# 0.7.4 (June 15th 2016)
+# 0.1.6 (June 11th 2016)
 
 + Added .flatten() to state which will flat map `value` properties.

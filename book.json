@@ -1,6 +1,6 @@
 {
   "gitbook": "2.5.2",
-  "title": "React Context Form",
+  "title": "Flum",
   "structure": {
     "summary": "docs/readme.md",
     "readme": "readme.md"
@@ -18,11 +18,11 @@
   },
   "pluginsConfig": {
     "editlink": {
-      "base": "https://github.com/julienvincent/react-context-form/tree/master",
+      "base": "https://github.com/julienvincent/flum/tree/master",
       "label": "edit"
     },
     "github": {
-      "url": "https://github.com/julienvincent/react-context-form"
+      "url": "https://github.com/julienvincent/flum"
     },
     "ga": {
       "token": "UA-53097839---3"
