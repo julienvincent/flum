@@ -15,7 +15,7 @@
     "docs:prepare": "gitbook install",
     "docs:make": "npm run docs:prepare && gitbook build",
     "docs:watch": "npm run docs:prepare && gitbook serve",
-    "docs:publish": "npm run docs:clean && npm run docs:make && cd _book && git init && git add . && git commit -m 'docs' && git checkout -b gh-pages && git push git@github.com:julienvincent/react-basic-forms gh-pages --force && cd ../ && npm run docs:clean"
+    "docs:publish": "npm run docs:clean && npm run docs:make && cd _book && git init && git add . && git commit -m 'docs' && git checkout -b gh-pages && git push git@github.com:julienvincent/flum gh-pages --force && cd ../ && npm run docs:clean"
   },
   "author": "Julien Vincent",
   "license": "MIT",
