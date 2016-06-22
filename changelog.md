@@ -1,3 +1,8 @@
+# 0.2.1
+
++ Not providing validation no longer breaks form.
++ onSubmit state checks now merge namespaced properties
+
 # 0.2.0
 
 + Renamed library to flum.
