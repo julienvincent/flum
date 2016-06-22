@@ -72,7 +72,7 @@ class Form extends Component {
         e.preventDefault()
 
         let valid = true
-        let state = this.state
+        let state = {...this.state}
 
         _.forEach(this.registeredComponents, component => {
             _.forEach(component.validation.split("|"), requirement => {
@@ -83,7 +83,7 @@ class Form extends Component {
                         ...this.select(id),
                         valid: false,
                         errors: [error]
-                    })
+                    }, state)
 
                     valid = false
                 }
@@ -141,14 +141,17 @@ class Form extends Component {
     setInputState(id, value, cb) {
         id = id.split(".")
 
-        const state = this.state
+        const vState = typeof cb !== 'function' ? cb : undefined
+        cb = typeof cb === 'function' ? cb : () => {
+        }
+        const state = vState || {...this.state}
 
         const set = (state, i = 1) => {
             if (i == id.length) {
                 return value
             }
 
-            const _state = state || {}
+            const _state = {...state || {}}
 
             return {
                 ..._state,
@@ -157,7 +160,6 @@ class Form extends Component {
         }
 
         const subState = {[id[0]]: set(state[id[0]])}
-
         this.setState(subState, cb)
 
         return {
@@ -222,7 +224,7 @@ class Form extends Component {
 
     render() {
         const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields"])
-        
+
         return $('form', {...props, onSubmit: this.submit},
             this.props.children
         )

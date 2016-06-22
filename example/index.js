@@ -6,7 +6,7 @@ import { Form, Input } from '../src/index'
 class App extends Component {
 
     onSubmit = fields => {
-        console.log(fields.valid)
+        console.log(fields)
         console.log(fields.state.flatten())
     }
 
@@ -19,7 +19,8 @@ class App extends Component {
             $('div', {},
                 $(Form, {onSubmit: this.onSubmit, getFields: getter => this.getFields = getter, onChange: this.onChange},
                     $('div', {},
-                        $(Input, {id: 'user.firstname', validation: 'numeric|required|min:20'}),
+                        $(Input, {id: 'user.firstName', validation: 'numeric|required|max:25', placeholder: "First Name"}),
+                        $(Input, {id: 'user.lastName', validation: 'numeric|required|max:25', placeholder: "Last Name"}),
 
                         $('button', {type: 'submit'}, "submit")
                     )
