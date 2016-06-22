@@ -72,7 +72,6 @@ class Form extends Component {
         e.preventDefault()
 
         let valid = true
-
         let state = this.state
 
         _.forEach(this.registeredComponents, component => {
@@ -182,29 +181,31 @@ class Form extends Component {
         })
     }
 
-    validate = (component, value) => {
+    validate = ({validation, validators}, value) => {
         let valid = true
         const errors = []
 
-        _.forEach(component.validation.split("|"), requirement => {
-            requirement = requirement.split(":")
+        if (validation) {
+            _.forEach(validation.split("|"), requirement => {
+                requirement = requirement.split(":")
 
-            let validator = _.find(this.validators, (validator, key) => key == requirement[0])
+                let validator = _.find(this.validators, (validator, key) => key == requirement[0])
 
-            const componentValidator = _.find(component.validators, (validator, key) => key == requirement[0])
-            if (componentValidator) validator = componentValidator
+                const componentValidator = _.find(validators, (validator, key) => key == requirement[0])
+                if (componentValidator) validator = componentValidator
 
-            if (validator) {
-                const _res = validator(value, ..._.without(requirement, requirement[0]))
-                if (!_res) {
-                    valid = false
-                    errors.push(requirement[0])
-                } else if (_res !== true && !_res.valid) {
-                    valid = false
-                    errors.push(_res.error)
+                if (validator) {
+                    const _res = validator(value, ..._.without(requirement, requirement[0]))
+                    if (!_res) {
+                        valid = false
+                        errors.push(requirement[0])
+                    } else if (_res !== true && !_res.valid) {
+                        valid = false
+                        errors.push(_res.error)
+                    }
                 }
-            }
-        })
+            })
+        }
 
         return {
             errors,
