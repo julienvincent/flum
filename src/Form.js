@@ -75,53 +75,55 @@ class Form extends Component {
         let state = {...this.state}
 
         _.forEach(this.registeredComponents, component => {
-            _.forEach(component.validation.split("|"), requirement => {
-                requirement = requirement.split(":")
+            if (component.validation) {
+                _.forEach(component.validation.split("|"), requirement => {
+                    requirement = requirement.split(":")
 
-                const changeState = (id, error) => {
-                    state = this.setInputState(id, {
-                        ...this.select(id),
-                        valid: false,
-                        errors: [error]
-                    }, state)
+                    const changeState = (id, error) => {
+                        state = this.setInputState(id, {
+                            ...this.select(id),
+                            valid: false,
+                            errors: [error]
+                        }, state)
 
-                    valid = false
-                }
-
-                switch (requirement[0]) {
-                    case "matches":
-                    {
-                        if (this.select(requirement[1]).value != this.select(component.id).value) {
-                            changeState(component.id, `Must match ${requirement[2] || requirement[1]}`)
-                        }
-
-                        break;
+                        valid = false
                     }
 
-                    case "required":
-                    {
-                        if (typeof component.isEmpty === 'function') {
-                            if (component.isEmpty()) {
-                                changeState(component.id, "Required")
+                    switch (requirement[0]) {
+                        case "matches":
+                        {
+                            if (this.select(requirement[1]).value != this.select(component.id).value) {
+                                changeState(component.id, `Must match ${requirement[2] || requirement[1]}`)
                             }
-                        } else {
-                            const state = this.select(component.id)
-                            if (!state.value || state.value == '') {
-                                changeState(component.id, "Required")
-                            }
+
+                            break;
                         }
 
-                        break;
+                        case "required":
+                        {
+                            if (typeof component.isEmpty === 'function') {
+                                if (component.isEmpty()) {
+                                    changeState(component.id, "Required")
+                                }
+                            } else {
+                                const state = this.select(component.id)
+                                if (!state.value || state.value == '') {
+                                    changeState(component.id, "Required")
+                                }
+                            }
+
+                            break;
+                        }
+
+                        default:
+                            if (!this.select(component.id).valid) {
+                                valid = false
+                            }
+
+                            break;
                     }
-
-                    default:
-                        if (!this.select(component.id).valid) {
-                            valid = false
-                        }
-
-                        break;
-                }
-            })
+                })
+            }
         })
         state.flatten = this.flatten.bind(this, state)
 

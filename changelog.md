@@ -1,3 +1,7 @@
+# 0.2.2
+
++ Not providing validation no longer breaks form on submit. 0.2.1 did not completely fix.
+
 # 0.2.1
 
 + Not providing validation no longer breaks form.
