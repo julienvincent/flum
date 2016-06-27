@@ -1,7 +1,7 @@
-import { Component, PropTypes, createElement as $ } from 'react'
+import {Component, PropTypes, createElement as $} from 'react'
 import _ from 'lodash'
 
-import { validators } from './validators'
+import {validators} from './validators'
 
 export default
 class Form extends Component {
@@ -16,7 +16,7 @@ class Form extends Component {
                 submit: this.submit,
                 onChange: this.onChange,
                 select: this.select,
-                state: () => this.state,
+                getState: this.getCurrentState,
                 validate: (id, value) => this.validate(_.find(this.registeredComponents, comp => comp.id == id), value),
                 register: this.register
             }
@@ -27,7 +27,8 @@ class Form extends Component {
         onSubmit: PropTypes.func,
         onChange: PropTypes.func,
         validators: PropTypes.objectOf(PropTypes.func),
-        getFields: PropTypes.func
+        getFields: PropTypes.func,
+        state: PropTypes.object
     }
 
     static defaultProps = {
@@ -50,7 +51,7 @@ class Form extends Component {
     componentWillMount() {
         this.updateValidators()
 
-        this.props.getFields(() => this.state)
+        this.props.getFields(() => this.getCurrentState())
     }
 
     updateValidators(props) {
@@ -72,7 +73,8 @@ class Form extends Component {
         e.preventDefault()
 
         let valid = true
-        let state = {...this.state}
+        let state = this.getCurrentState()
+        let nextState
 
         _.forEach(this.registeredComponents, component => {
             if (component.validation) {
@@ -80,11 +82,11 @@ class Form extends Component {
                     requirement = requirement.split(":")
 
                     const changeState = (id, error) => {
-                        state = this.setInputState(id, {
+                        nextState = this.createNextState(id, {
                             ...this.select(id),
                             valid: false,
                             errors: [error]
-                        }, state)
+                        }, nextState || state)
 
                         valid = false
                     }
@@ -125,12 +127,11 @@ class Form extends Component {
                 })
             }
         })
+        if (nextState) state = nextState
         state.flatten = this.flatten.bind(this, state)
+        if (this.props.state && nextState) this.props.onChange(state)
 
-        this.props.onSubmit({
-            valid,
-            state
-        })
+        this.props.onSubmit({valid, state})
     }
 
     flatten(state, search = false) {
@@ -138,21 +139,19 @@ class Form extends Component {
         return _.mapValues(_.omitBy(state, val => typeof val === 'function'), val => this.flatten(val, true))
     }
 
-    select = id => _.get(this.state, id, {value: null, errors: [], valid: true})
+    select = id => _.get(this.getCurrentState(), id, {value: null, errors: [], valid: true})
 
-    setInputState(id, value, cb) {
+    getCurrentState = () => {
+        const {state} = this.props
+        return {...state ? state : this.state}
+    }
+
+    createNextState = (id, statePiece, vState) => {
         id = id.split(".")
-
-        const vState = typeof cb !== 'function' ? cb : undefined
-        cb = typeof cb === 'function' ? cb : () => {
-        }
-        const state = vState || {...this.state}
+        const state = vState || this.getCurrentState()
 
         const set = (state, i = 1) => {
-            if (i == id.length) {
-                return value
-            }
-
+            if (i == id.length) return statePiece
             const _state = {...state || {}}
 
             return {
@@ -162,27 +161,28 @@ class Form extends Component {
         }
 
         const subState = {[id[0]]: set(state[id[0]])}
-        this.setState(subState, cb)
-
-        return {
-            ...state,
-            ...subState
-        }
+        return {...state, ...subState}
     }
 
     onChange = (id, value) => {
-        const {onChange} = this.props
+        const {onChange, state} = this.props
         const component = _.find(this.registeredComponents, comp => comp.id == id)
         const validation = this.validate(component, value)
 
-        this.setInputState(id, {
+        const nextState = this.createNextState(id, {
             ...validation,
             value
-        }, () => {
-            const state = {...this.state}
-            state.flatten = this.flatten.bind(this, state)
-            onChange(state)
         })
+
+        if (state) {
+            nextState.flatten = this.flatten.bind(this, nextState)
+            onChange(nextState)
+        } else {
+            this.setState(nextState, () => {
+                nextState.flatten = this.flatten.bind(this, nextState)
+                onChange(nextState)
+            })
+        }
     }
 
     validate = ({validation, validators}, value) => {
@@ -225,7 +225,7 @@ class Form extends Component {
     }
 
     render() {
-        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields"])
+        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields", "state"])
 
         return $('form', {...props, onSubmit: this.submit},
             this.props.children
