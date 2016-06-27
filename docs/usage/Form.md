@@ -84,3 +84,21 @@ class App extends Component {
 ```
 
 And that's pretty much it.
+
+If you would like to host field state outside of the form, you may pass in state as a prop, and handle state updating via the `onChange` handler.
+```javascript
+class Form extends Component {
+
+    render() {
+        return (
+            <Form
+                state={this.state}
+                onChange={state => this.setState(state)}>
+
+                ...
+
+            </Form>
+        )
+    }
+}
+```

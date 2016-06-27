@@ -1,3 +1,8 @@
+# 0.2.3
+
++ Can now host state outside of form if required.
++ Context method to fetch state renamed from `state()` to `getState()`.
+
 # 0.2.2
 
 + Not providing validation no longer breaks form on submit. 0.2.1 did not completely fix.
@@ -5,7 +10,7 @@
 # 0.2.1
 
 + Not providing validation no longer breaks form.
-+ onSubmit state checks now merge namespaced properties
++ onSubmit state checks now merge namespaced properties.
 
 # 0.2.0
 

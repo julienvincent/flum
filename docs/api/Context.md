@@ -56,7 +56,7 @@ Get the meta information of the component matching the provided `id`. meta: (`va
 ### `validate(id, value)`
 Validate some value according to the component matching the provided id's validation pattern. Returns a meta state.
 
-### `state()`
+### `getState()`
 Fetch the forms entire state.
 
 ### `submit()`

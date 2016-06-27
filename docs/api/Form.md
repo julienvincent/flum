@@ -49,11 +49,11 @@ onChange = state => {
 
 ### Props
 
-#### `onChange(state)`
+#### `onChange(state) [func]`
 
 Called whenever one of its child components `value` changes and contains a snapshot of the forms state.
 
-#### `onSubmit(checkedState)`
+#### `onSubmit(checkedState) [func]`
 
 Called when the form is submitted. Contains a fully checked state. Submitting the form first checks `match` and `required` validation properties
 
@@ -64,11 +64,11 @@ Called when the form is submitted. Contains a fully checked state. Submitting th
 }
 ```
 
-`validators(object)`
+`validators [object]`
 
 An object containing custom validators. Check out how to create [custom validators](Validators.md).
 
-#### `getFields(getter)`
+#### `getFields(getter) [func]`
 
 A utility method to allow for programmatically accessing the forms state. This prop will be called with a getter function as its first argument. The getter function, when called, returns the current
 state of the form.
@@ -88,3 +88,7 @@ class App extends Component {
     }
 }
 ```
+
+#### `state [object]`
+
+State to use instead of own state. Useful if you need to store state outside of the form, the `nextState` is provided via the `onChange()` prop.
