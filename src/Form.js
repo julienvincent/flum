@@ -1,7 +1,7 @@
-import {Component, PropTypes, createElement as $} from 'react'
+import { Component, PropTypes, createElement as $ } from 'react'
 import _ from 'lodash'
 
-import {validators} from './validators'
+import { validators } from './validators'
 
 export default
 class Form extends Component {
@@ -227,8 +227,14 @@ class Form extends Component {
     render() {
         const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields", "state"])
 
-        return $('form', {...props, onSubmit: this.submit},
-            this.props.children
-        )
+        const renderForm = () => {
+            if (typeof navigator === 'undefined' || navigator.product != 'ReactNative') return (
+                $('form', {...props, onSubmit: this.submit},
+                    this.props.children)
+            )
+            return children
+        }
+
+        return renderForm()
     }
 }
