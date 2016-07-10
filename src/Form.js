@@ -232,7 +232,7 @@ class Form extends Component {
                 $('form', {...props, onSubmit: this.submit},
                     this.props.children)
             )
-            return children
+            return this.props.children
         }
 
         return renderForm()
