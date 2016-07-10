@@ -1,3 +1,7 @@
+# 0.2.4 (July 10th 2016)
+
++ Removed `form` wrapped while used in `react-native`.
+
 # 0.2.3 (June 27th 2016)
 
 + Can now host state outside of form if required.
