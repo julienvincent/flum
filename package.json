@@ -1,6 +1,6 @@
 {
   "name": "flum",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A forms library for react that provides its API via context",
   "main": "lib/index.js",
   "directories": {
