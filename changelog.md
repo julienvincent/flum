@@ -1,4 +1,4 @@
-# 0.2.6 (July 20th 2016)
+# 1.0.0 (July 20th 2016)
 
 + `react` is now a peer dependency instead of a dependency.
 + The `getFields` prop has been replaced with `getContext` which provides the context api externally.
