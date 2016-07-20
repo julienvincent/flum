@@ -81,7 +81,7 @@ class Form extends Component {
     }
 
     submit = e => {
-        e.preventDefault()
+        if (e && typeof  e.preventDefault === 'function') e.preventDefault()
 
         let valid = true
         let state = this.getCurrentState()

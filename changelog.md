@@ -1,9 +1,7 @@
-# 1.0.2 (July 20th 2016)
+# 1.0.3 (July 20th 2016)
 
 + Calling `getContext` no longer wraps api in a function.
-
-# 1.0.1 (July 20th 2016)
-
++ Submitting in react-native no longer breaks.
 + Form was returning a function when used in react-native. Fixed.
 
 # 1.0.0 (July 20th 2016)
