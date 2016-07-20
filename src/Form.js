@@ -62,7 +62,7 @@ class Form extends Component {
     componentWillMount() {
         this.updateValidators()
 
-        this.props.getContext(() => this.getChildContext().form)
+        this.props.getContext(this.getChildContext().form)
     }
 
     updateValidators(props) {

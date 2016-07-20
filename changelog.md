@@ -1,6 +1,10 @@
+# 1.0.2 (July 20th 2016)
+
++ Calling `getContext` no longer wraps api in a function.
+
 # 1.0.1 (July 20th 2016)
 
-# Form was returning a function when used in react-native. Fixed.
++ Form was returning a function when used in react-native. Fixed.
 
 # 1.0.0 (July 20th 2016)
 
