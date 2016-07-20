@@ -1,3 +1,7 @@
+# 1.0.1 (July 20th 2016)
+
+# Form was returning a function when used in react-native. Fixed.
+
 # 1.0.0 (July 20th 2016)
 
 + `react` is now a peer dependency instead of a dependency.
