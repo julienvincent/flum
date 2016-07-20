@@ -1,4 +1,5 @@
 import { Component, createElement as $, PropTypes } from 'react'
+import _ from 'lodash'
 
 export default
 class Input extends Component {
@@ -27,6 +28,6 @@ class Input extends Component {
         const {id} = this.props
         const {form: {onChange, select}} = this.context
 
-        return $('input', {...this.props, onChange: e => onChange(id, e.target.value), value: select(id).value || ''})
+        return $('input', {..._.omit(this.props, ["validation", "id"]), onChange: e => onChange(id, e.target.value), value: select(id).value || ''})
     }
 }

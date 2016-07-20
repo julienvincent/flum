@@ -68,21 +68,22 @@ Called when the form is submitted. Contains a fully checked state. Submitting th
 
 An object containing custom validators. Check out how to create [custom validators](Validators.md).
 
-#### `getFields(getter) [func]`
+#### `getContext(getter) [func]`
 
-A utility method to allow for programmatically accessing the forms state. This prop will be called with a getter function as its first argument. The getter function, when called, returns the current
-state of the form.
+A utility method to allow for programmatically accessing the forms context api. This prop will be called with a getter function as its first argument. The getter function, when called,
+returns the forms context api
 
 Here is an example of its usage:
 ```javascript
 class App extends Component {
 
     firstCheckState() {
-        this.getFields() // The current state of the form
+        this.formContext.getState() // The current state of the form
+        this.formContext.submit() // submit the form
     }
 
     render() {
-        return Form({getFields: getter => this.getFields = getter},
+        return Form({getContext: context => this.formContext = context},
             ...
         )
     }

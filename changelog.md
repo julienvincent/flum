@@ -1,4 +1,9 @@
-# 0.2.4 (July 10th 2016)
+# 0.2.6 (July 20th 2016)
+
++ `react` is now a peer dependency instead of a dependency.
++ The `getFields` prop has been replaced with `getContext` which provides the context api externally.
+
+# 0.2.4 - 0.2.5 (July 10th 2016)
 
 + Removed `form` wrapped while used in `react-native`.
 

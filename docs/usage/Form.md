@@ -102,3 +102,5 @@ class Form extends Component {
     }
 }
 ```
+
+**NOTE:** If you are using this with react-native, `Form` can only accept a single child. You should wrap all children passed to `Form` in a `View` or some other component.

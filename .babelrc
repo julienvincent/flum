@@ -3,6 +3,7 @@
     "es2015",
     "babel-preset-stage-0"
   ],
+  "plugins": ["lodash"],
   "ignore": [
     "lib/*"
   ]

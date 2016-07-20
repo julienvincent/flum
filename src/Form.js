@@ -1,7 +1,17 @@
-import { Component, PropTypes, createElement as $ } from 'react'
+import { Component, PropTypes, createElement } from 'react'
+import { validators } from './validators'
 import _ from 'lodash'
 
-import { validators } from './validators'
+const isReactNative = (a, b) => (typeof navigator === 'undefined' || navigator.product != 'ReactNative') ? b() : a()
+const CheckChildren = (props, name, component) => {
+    if (isReactNative(() => true)) {
+        if (Array.isArray(props[name])) {
+            return new Error(
+                `${name}. When using flum in react-native, ${component} should be given a single child only. It is recommended to wrap multiple components in a View`
+            )
+        }
+    }
+}
 
 export default
 class Form extends Component {
@@ -27,8 +37,9 @@ class Form extends Component {
         onSubmit: PropTypes.func,
         onChange: PropTypes.func,
         validators: PropTypes.objectOf(PropTypes.func),
-        getFields: PropTypes.func,
-        state: PropTypes.object
+        getContext: PropTypes.func,
+        state: PropTypes.object,
+        children: CheckChildren
     }
 
     static defaultProps = {
@@ -51,7 +62,7 @@ class Form extends Component {
     componentWillMount() {
         this.updateValidators()
 
-        this.props.getFields(() => this.getCurrentState())
+        this.props.getContext(() => this.getChildContext().form)
     }
 
     updateValidators(props) {
@@ -92,8 +103,7 @@ class Form extends Component {
                     }
 
                     switch (requirement[0]) {
-                        case "matches":
-                        {
+                        case "matches": {
                             if (this.select(requirement[1]).value != this.select(component.id).value) {
                                 changeState(component.id, `Must match ${requirement[2] || requirement[1]}`)
                             }
@@ -101,8 +111,7 @@ class Form extends Component {
                             break;
                         }
 
-                        case "required":
-                        {
+                        case "required": {
                             if (typeof component.isEmpty === 'function') {
                                 if (component.isEmpty()) {
                                     changeState(component.id, "Required")
@@ -225,16 +234,12 @@ class Form extends Component {
     }
 
     render() {
-        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getFields", "state"])
+        const {children} = this.props
+        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getContext", "state"])
 
-        const renderForm = () => {
-            if (typeof navigator === 'undefined' || navigator.product != 'ReactNative') return (
-                $('form', {...props, onSubmit: this.submit},
-                    this.props.children)
-            )
-            return this.props.children
-        }
-
-        return renderForm()
+        return isReactNative(
+            () => () => children,
+            () => createElement('form', {...this.props, onSubmit: this.submit}, children)
+        )
     }
 }

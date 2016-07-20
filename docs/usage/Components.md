@@ -33,7 +33,7 @@ class Input extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
-        validation: propTypes.string
+        validation: PropTypes.string
     }
 
     componentWillMount() {
@@ -83,7 +83,7 @@ class Input extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
-        validation: propTypes.string
+        validation: PropTypes.string
     }
 
     componentWillMount() {
