@@ -47,7 +47,7 @@ class Form extends Component {
         },
         onSubmit: () => {
         },
-        getFields: () => {
+        getContext: () => {
         }
     }
 
