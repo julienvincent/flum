@@ -4,7 +4,7 @@ import _ from 'lodash'
 
 const isReactNative = (a, b) => (typeof navigator === 'undefined' || navigator.product != 'ReactNative') ? b() : a()
 const CheckChildren = (props, name, component) => {
-    if (isReactNative(() => true)) {
+    if (isReactNative(() => true, () => false)) {
         if (Array.isArray(props[name])) {
             return new Error(
                 `${name}. When using flum in react-native, ${component} should be given a single child only. It is recommended to wrap multiple components in a View`
