@@ -7,9 +7,15 @@ import { Form } from 'react-context-form'
 import Input from './Input.js'
 
 class App extends Component {
+    
+    state = {
+        form: {}
+    }
 
     onChange = state => {
-        // do something with changed state
+        this.setState({
+            form: state
+        })
     }
 
     onSubmit = checkedState => {
@@ -25,6 +31,7 @@ class App extends Component {
             <Form
                 onSubmit={this.onSubmit}
                 onChange={this.onChange}>
+                state={this.state.form}
                 <div className="field">
                     <Input id="name" validation="alphanumeric|required"></Input>
                 </div>

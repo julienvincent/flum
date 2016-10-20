@@ -235,11 +235,11 @@ class Form extends Component {
 
     render() {
         const {children} = this.props
-        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getContext", "state"])
+        const props = _.omit(this.props, ["onSubmit", "onChange", "validators", "getContext", "state", "children"])
 
         return isReactNative(
             () => children,
-            () => createElement('form', {...this.props, onSubmit: this.submit}, children)
+            () => createElement('form', {...props, onSubmit: this.submit}, children)
         )
     }
 }

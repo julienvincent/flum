@@ -1,3 +1,7 @@
+# 1.0.4 ()
+
++ Props given to <form> are properly stripped.
+
 # 1.0.3 (July 20th 2016)
 
 + Calling `getContext` no longer wraps api in a function.
