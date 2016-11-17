@@ -6,9 +6,11 @@ colons ( `rule:param` ).
 Here is a list of all the validators provided out of the box:
 + `numeric` - Can only contain numbers.
 + `alphanumeric` - Can contain both numbers and letters.
-+ `string` - Cannot contain numbers.
-+ `min:x` - Must contain at least `x` characters.
-+ `max:x` - Cannot contain more than `x` characters.
++ `letters` - Can only contain letters and spaces.
++ `min-length:x` - Must contain at least `x` characters.
++ `max-length:x` - Cannot contain more than `x` characters.
++ `min:x` - Cannot be less than `x`.
++ `max:x` - Cannot be more than `x`.
 + `between:x:y` - Must be between `x` and `y` characters long.
 + `matches:id` - Must contain the same value as the field belonging to `id`. (checked on form submission)
 + `required` - The field is required. (checked on form submission)

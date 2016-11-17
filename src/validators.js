@@ -12,9 +12,9 @@ const reply = error => {
 }
 
 const validators = {
-    min: (value, amount) => {
+    "min-length": (value, amount) => {
         if (!amount) {
-            throw new Error("The min validator requires a parameter")
+            throw new Error("The min-length validator requires a parameter")
         }
 
         if (value.length > amount) {
@@ -24,15 +24,38 @@ const validators = {
         }
     },
 
-    max: (value, amount) => {
+    "max-length": (value, amount) => {
         if (!amount) {
-            throw new Error("The max validator requires a parameter")
+            throw new Error("The max-length validator requires a parameter")
         }
 
         if (value.length < amount) {
             return reply()
         } else {
             return reply(`Must be less than ${amount} characters`)
+        }
+    },
+
+    min: (value, amount) => {
+        if (!amount) {
+            throw new Error("The min validator requires a parameter")
+        }
+
+        if (value >= amount) {
+            return reply()
+        } else {
+            return reply(`Cannot be less than ${amount}`)
+        }
+    },
+    max: (value, amount) => {
+        if (!amount) {
+            throw new Error("The max validator requires a parameter")
+        }
+
+        if (value <= amount) {
+            return reply()
+        } else {
+            return reply(`Cannot be more than ${amount}`)
         }
     },
 
@@ -44,7 +67,7 @@ const validators = {
         if (value.length < max && value.length > min) {
             return reply()
         } else {
-            return reply(`Must be between the amounts ${min} and ${max}`)
+            return reply(`Must be between ${min} and ${max}`)
         }
     },
 
@@ -56,8 +79,8 @@ const validators = {
         }
     },
     
-    string: value => {
-        if (value == '' || /[A-z !@#$%¨&*()-=+/*.]/.test(value)) {
+    letters: value => {
+        if (value == '' || /[A-z ]/.test(value)) {
             return reply()
         } else {
             return reply("Cannot contain numbers")

@@ -81,7 +81,7 @@ class Form extends Component {
     }
 
     submit = e => {
-        if (e && typeof  e.preventDefault === 'function') e.preventDefault()
+        if (e && typeof e.preventDefault === 'function') e.preventDefault()
 
         let valid = true
         let state = this.getCurrentState()
@@ -113,12 +113,12 @@ class Form extends Component {
 
                         case "required": {
                             if (typeof component.isEmpty === 'function') {
-                                if (component.isEmpty()) {
+                                if (component.isEmpty(this.select(id))) {
                                     changeState(component.id, "Required")
                                 }
                             } else {
-                                const state = this.select(component.id)
-                                if (!state.value || state.value == '') {
+                                const componentState = this.select(component.id)
+                                if (!componentState.value || componentState.value == '') {
                                     changeState(component.id, "Required")
                                 }
                             }
@@ -136,11 +136,15 @@ class Form extends Component {
                 })
             }
         })
-        if (nextState) state = nextState
-        state.flatten = this.flatten.bind(this, state)
-        if (this.props.state && nextState) this.props.onChange(state)
+        if (!nextState) nextState = state
+        nextState.flatten = this.flatten.bind(this, nextState)
+        if (this.props.state && nextState) {
+            this.props.onChange(state)
+        } else if (nextState) {
+            this.setState(nextState)
+        }
 
-        this.props.onSubmit({valid, state})
+        this.props.onSubmit({valid, state: nextState})
     }
 
     flatten(state, search = false) {
@@ -152,7 +156,7 @@ class Form extends Component {
 
     getCurrentState = () => {
         const {state} = this.props
-        return {...state ? state : this.state}
+        return {...(state ? state : this.state)}
     }
 
     createNextState = (id, statePiece, vState) => {
