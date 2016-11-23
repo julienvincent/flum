@@ -2,7 +2,7 @@
 import { Component, PropTypes } from 'react'
 import { validateField } from '../Utils/Validation'
 
-import { Field, State } from '../types'
+import type { Field, State } from '../types'
 
 export default
 class Form extends Component {
