@@ -37,7 +37,7 @@ class FormComponent extends Component {
 
     render() {
         const {form} = this.context
-        const {id} = this.props
+        const {id, children} = this.props
         const data = form.select(id)
 
         return children({
