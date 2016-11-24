@@ -19,29 +19,54 @@ Here is a list of all the validators provided out of the box:
 
 ##### Example
 ```javascript
-<Input id="name" validation="string|max:25|required"></Input>
+<FormComponent id="firstName" validation="string|max:25|required" />
 ```
 
 ### Custom Validators
 
-Creating custom validators are easy. Each validator is a function that accepts a value as the first parameter and rule properties as the rest. The validator should return `true` or `false`
-depending weather the given value passes the validation test. If you would like the validator to provide an error message, then you may return an object containing `valid`: false and
-`error`: string.
+Validators are quite simple - they are just functions that need to return `{valid: boolean, error: string}`. They are given an object containing a value, validator
+args and for globalValidators - the state object.
+
+```javascript
+{
+    value: any,
+    args: [...string],
+    state: ?Object
+}
+```
+
+Validators should be provided as a collection of `key` => `validator` and referenced by their `key`.
 
 ```javascript
 const validators = {
-    equals: (value, ...values) => {
-        if (!_.find(values, val => val == value)) {
-            return {
-                valid: false,
-                error: `Doesn't match values: ${values}`
-            }
+    equals({value, args}) {
+        if (_.find(args, val => val == value)) return {
+            valid: true
         }
-        return true
+
+        return {
+            valid: false,
+            error: "Invalid"
+        }
+    },
+    
+    required: ({value}) => {
+        if (value && value != "") return {
+            valid: true
+        }
+
+        return {
+            valid: false,
+            error: "Required"
+        }
     }
 }
 ```
 
 ```javascript
-<Input id="name" validation="equals:1:3:5:7"></Input>
+<FormComponent 
+    id="name" 
+    localValidation="equals:1:3:5:7" 
+    globalValidation="required" 
+    validators={validators} />
 ```

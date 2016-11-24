@@ -1,113 +1,70 @@
 # Implementing the Form
 
-Once we have created our component, setting up our form is pretty straight forward. As long as the input is a child of `Form`, it will have access to its API.
+Now that we understand how data is passed up to the form, we can setup a basic form. Flum's `Form` component is just another controlled component which means the
+developer will always have control of the state. 
+
+State validation is only _partly_ handled by the `Form` component. Flum is not actually a 'form' in the general sense and so we do not have a `submit` hook. 
+This means there is no logical way to automatically run a `globalValidation` process on state - only `localValidation` is automatically applied, and is applied
+during the `onChange` call.
+
+Here is how we would go about implementing some basic form logic.
+
 ```javascript
 import React, { Component } from 'react'
-import { Form } from 'react-context-form'
-import Input from './Input.js'
+import { Form, FormComponent, validateState, flattenState } from 'react-context-form'
 
 class App extends Component {
     
-    state = {
-        form: {}
-    }
+    state = {}
 
-    onChange = state => {
-        this.setState({
-            form: state
-        })
-    }
+    onChange = state =>
+        /* This is our validated state (localValidation) */
+        this.setState(state)
 
-    onSubmit = checkedState => {
-        const {valid, state} = checkedState
+    submit = () => {
+            
+        /* When the form is 'submitted' we want to validate
+         * out state. calling validateState will apply 
+         * all globalValidators to our fields.
+         * */
+        const {valid, state} = validateState(this.state)
 
         if (valid) {
-            post(state.flatten())
+            
+            /* At the moment our state is made up of Fields,
+             * which is hard to work with. calling flattenState()
+             * will convert our state from Fields to key => value
+             * */
+            post(flattenState(state))
         }
     }
 
     render() {
         return (
-            <Form
-                onSubmit={this.onSubmit}
-                onChange={this.onChange}>
-                state={this.state.form}
-                <div className="field">
-                    <Input id="name" validation="alphanumeric|required"></Input>
+            <Form state={this.state} onChange={this.onChange}>
+                <div className="form">
+                    <FormComponent id="firstName" localValidation="letters" globalValidation="required">
+                        {({value, onChange}) => 
+                            <input value={value || ""} onChange={e => onChange(e.target.value)} />
+                        }
+                    </FormComponent>
+                    
+                    <FormComponent id="password" localValidation="min:10" globalValidation="required" >
+                        {({value, onChange}) => 
+                            <input value={value || ""} onChange={e => onChange(e.target.value)} />
+                        }
+                    </FormComponent>
+                                        
+                    <FormComponent id="confirm_password" globalValidation="required|matches:password" >
+                        {({value, onChange}) => 
+                            <input value={value || ""} onChange={e => onChange(e.target.value)} />
+                        }
+                    </FormComponent>
+                    
+                    <button onClick={this.submit}>Register</button>
                 </div>
             </Form>
         )
     }
 }
 ```
-The state given to the `onChange()` and `onSubmit()` handlers is structured according to `id`'s, and their values are objects with information about the input.
-```javascript
-{
-    name: {
-        value: "John", // the current value of the input.
-        errors: [], // an array of validation errors.
-        valid: true // is the input valid.
-    }
-}
-```
-One problem with this structure is that it makes working with it hard. We cannot just pass the state directly as post data without first extracting `value`. To solve this,
-the state comes with a `flatten()` method which removes all meta information. For example, applying `flatten()` to the above state will result in the following:
-```javascript
-{
-    name: "John"
-}
-```
-This is much easier to work with.
-
-If you want to add your own custom validators to the form, pass them in as props.
-```javascript
-class App extends Component {
-
-    /* ... */
-
-    render() {
-        const validators = {
-            equals: (value, match) => {
-                if (value != match) {
-                    return {
-                        valid: false,
-                        error: `Value must equal ${match}`
-                    }
-                }
-                return true
-            }
-        }
-
-        return (
-            <Form
-                validators={validators}>
-                <div className="field">
-                    <Input id="name" validation="equals:James|alphanumeric|required"></Input>
-                </div>
-            </Form>
-        )
-    }
-}
-```
-
-And that's pretty much it.
-
-If you would like to host field state outside of the form, you may pass in state as a prop, and handle state updating via the `onChange` handler.
-```javascript
-class Form extends Component {
-
-    render() {
-        return (
-            <Form
-                state={this.state}
-                onChange={state => this.setState(state)}>
-
-                ...
-
-            </Form>
-        )
-    }
-}
-```
-
-**NOTE:** If you are using this with react-native, `Form` can only accept a single child. You should wrap all children passed to `Form` in a `View` or some other component.
