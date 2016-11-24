@@ -1,0 +1,10 @@
+example
+src
+.idea
+.babelrc
+.eslintrc
+!lib
+
+_book
+
+docs

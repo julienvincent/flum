@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Writing Form Components | Flum</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../docs/styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../docs/usage/Form.html" />
+    
+    
+    <link rel="prev" href="../../docs/usage/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="1.1" data-chapter-title="Writing Form Components" data-filepath="docs/usage/Components.md" data-basepath="../.." data-revision="Thu Nov 24 2016 10:18:46 GMT+0200 (SAST)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Read Me
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/usage/index.html">
+            
+                
+                    <a href="../../docs/usage/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Usage
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.1" data-path="docs/usage/Components.html">
+            
+                
+                    <a href="../../docs/usage/Components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Writing Form Components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="docs/usage/Form.html">
+            
+                
+                    <a href="../../docs/usage/Form.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Implementing The Form
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/api/index.html">
+            
+                
+                    <a href="../../docs/api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API Reference
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/api/Form.html">
+            
+                
+                    <a href="../../docs/api/Form.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Form
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/api/Context.html">
+            
+                
+                    <a href="../../docs/api/Context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="docs/api/Validation.html">
+            
+                
+                    <a href="../../docs/api/Validation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Validation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="docs/Todo.html">
+            
+                
+                    <a href="../../docs/Todo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Todo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="changelog.html">
+            
+                
+                    <a href="../../changelog.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Changelog
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Flum</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="writing-input-components">Writing Input Components</h1>
+<p>Flum does not provide any actual input components - that&apos;s entirely up to the developer to build. There are two approaches you can take to creating a component
+that can integrate with Flum - using the <code>FormComponent</code> wrapper component provided or directly hooking into Flum&apos;s context API. The first approach is the
+recommended way to do things, while the second allows for <em>slightly</em> more control.</p>
+<h3 id="using-the-wrapper"><code>Using the wrapper</code></h3>
+<p>The provided wrapper component does all the work of integration and translation between Flum and your component. It gives you <code>data</code> and an <code>onChange</code> hook which
+you can pass to the form component you are wrapping, the same controlled API you are used to using with react.</p>
+<p>You will need to provide the wrapper an <code>id</code> via props. This is a string that will be used as that components key in state. For example, if you gave a component
+the key <code>firstName</code> then the resulting state will look like so:</p>
+<pre><code class="lang-javascript"><span class="token punctuation">{</span>
+    firstName<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+        value<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+        error<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+        <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Additionally you can provide the component a validation string and additional validation functions. The validation string is a pipe separated collection of
+validators that need to be run on the components data. For example, the validation string <code>letters|min:10</code> will result in a validation function <code>letters</code> and
+then a validation function called <code>min</code> being run against the component&apos;s data. Notice how the <code>min:10</code> validator has the trailing <code>:10</code> - that just means that
+the value <code>10</code> will be given as arguments to the validation function.</p>
+<p>Validation strings have been split into two separate props - <code>localValidation</code> and <code>globalValidation</code> - and are just a way to separate when validation rules are
+applied. <code>localValidation</code> is applied on every state change, while <code>globalValidation</code> is applied on submit (kinda).</p>
+<pre><code class="lang-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Form<span class="token punctuation">,</span> FormComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;flum&apos;</span>
+
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>Form<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>FormComponent id<span class="token operator">=</span><span class="token string">&quot;name&quot;</span><span class="token operator">&gt;</span>
+            <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token punctuation">,</span> onChange<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> 
+                <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+            <span class="token punctuation">}</span>
+        <span class="token operator">&lt;</span><span class="token operator">/</span>FormComponent<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>Form<span class="token operator">&gt;</span>
+</code></pre>
+<p>As an alternate way of using this wrapper, you can give it a component via props instead of children. For this to work your component needs to be a react class.
+Using this method means that the wrapper can grab custom validators directly from the input component.</p>
+<pre><code class="lang-javascript"><span class="token keyword">import</span> <span class="token punctuation">{</span> Form<span class="token punctuation">,</span> FormComponent <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;flum&apos;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Input</span> <span class="token keyword">extends</span> <span class="token class-name">React<span class="token punctuation">.</span>Component</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">static</span> validators <span class="token operator">=</span> <span class="token punctuation">{</span>
+        <span class="token function">customValidator</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token punctuation">{</span>valid<span class="token punctuation">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token punctuation">{</span>valid<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> error<span class="token punctuation">:</span> <span class="token string">&quot;Invalid&quot;</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>value<span class="token punctuation">,</span> onChange<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> App <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>Form<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>FormComponent id<span class="token operator">=</span><span class="token string">&quot;name&quot;</span> component<span class="token operator">=</span><span class="token punctuation">{</span>Input<span class="token punctuation">}</span> localValidation<span class="token operator">=</span><span class="token string">&quot;customValidator&quot;</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>Form<span class="token operator">&gt;</span>
+</code></pre>
+<p>The wrapper does of course do more than this, check out the API docs for the fleshy details.</p>
+<h3 id="using-context"><code>Using Context</code></h3>
+<p>The context API consists of two methods - <code>getField(id: string)</code> and <code>onChange(field: Object, id: string)</code> - that are essentially getters and setters for state.
+A good practice would be to use <code>onChange</code> in <code>componentDidMount</code> to set the initial state and field properties.</p>
+<p>A field follows the following structure. This data must be given along with every <code>onChange</code> call.</p>
+<pre><code class="lang-javascript">type Field <span class="token operator">=</span> <span class="token punctuation">{</span>
+    value<span class="token punctuation">:</span> <span class="token operator">?</span>any<span class="token punctuation">,</span>
+    error<span class="token punctuation">:</span> <span class="token operator">?</span>string<span class="token punctuation">,</span>
+    valid<span class="token punctuation">:</span> boolean<span class="token punctuation">,</span>
+    localValidation<span class="token punctuation">:</span> <span class="token operator">?</span>string<span class="token punctuation">,</span>
+    globalValidation<span class="token punctuation">:</span> <span class="token operator">?</span>string<span class="token punctuation">,</span>
+    validators<span class="token punctuation">:</span> <span class="token operator">?</span><span class="token punctuation">{</span><span class="token punctuation">[</span>key<span class="token punctuation">:</span> string<span class="token punctuation">]</span><span class="token punctuation">:</span> Function<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Here is an example component built using context.</p>
+<pre><code class="lang-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
+
+<span class="token keyword">export</span> <span class="token keyword">default</span>
+<span class="token keyword">class</span> <span class="token class-name">FormComponent</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">static</span> contextTypes <span class="token operator">=</span> <span class="token punctuation">{</span>
+        form<span class="token punctuation">:</span> PropTypes<span class="token punctuation">.</span>object
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/* Our field state is initialized with validators, validation
+     * strings and null data. 
+     * */</span>
+    <span class="token function">componentWillMount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>form<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>context
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>id<span class="token punctuation">,</span> localValidation<span class="token punctuation">,</span> globalValidation<span class="token punctuation">,</span> validators<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+
+        form<span class="token punctuation">.</span><span class="token function">onChange</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            localValidation<span class="token punctuation">,</span>
+            globalValidation<span class="token punctuation">,</span>
+            validators<span class="token punctuation">,</span>
+            value<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+            error<span class="token punctuation">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+            valid<span class="token punctuation">:</span> <span class="token boolean">true</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/* Whenever the data changes, pass the new data
+     * along with the current state of the form.
+     * */</span>
+    onChange <span class="token operator">=</span> <span class="token punctuation">(</span>value<span class="token punctuation">:</span> any<span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>form<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>context
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>id<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+        <span class="token keyword">const</span> data <span class="token operator">=</span> form<span class="token punctuation">.</span><span class="token function">getField</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+
+        form<span class="token punctuation">.</span><span class="token function">onChange</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+            <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>data<span class="token punctuation">,</span>
+            value
+        <span class="token punctuation">}</span><span class="token punctuation">,</span> id<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>form<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>context
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>id<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>props
+
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>value<span class="token punctuation">}</span> <span class="token operator">=</span> form<span class="token punctuation">.</span><span class="token function">getField</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>value<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../docs/usage/index.html" class="navigation navigation-prev " aria-label="Previous page: Usage"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../docs/usage/Form.html" class="navigation navigation-next " aria-label="Next page: Implementing The Form"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-editlink/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"editlink":{"base":"https://github.com/julienvincent/flum/tree/master","label":"edit","multilingual":false},"github":{"url":"https://github.com/julienvincent/flum"},"ga":{"token":"UA-53097839-3","configuration":"auto"},"prism":{},"anchors":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

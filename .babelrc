@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "es2015",
+    "babel-preset-stage-0",
+    "react"
+  ],
+  "plugins": ["transform-flow-strip-types", "lodash"],
+  "ignore": [
+    "lib/*"
+  ]
+}

@@ -1,0 +1,389 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Implementing The Form | Flum</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.5.2">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-prism/prism.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+        <link rel="stylesheet" href="../../docs/styles/website.css">
+    
+
+        
+    
+    
+    <link rel="next" href="../../docs/api/index.html" />
+    
+    
+    <link rel="prev" href="../../docs/usage/Components.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book" data-level="1.2" data-chapter-title="Implementing The Form" data-filepath="docs/usage/Form.md" data-basepath="../.." data-revision="Thu Nov 24 2016 10:18:46 GMT+0200 (SAST)">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Read Me
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="docs/usage/index.html">
+            
+                
+                    <a href="../../docs/usage/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Usage
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="docs/usage/Components.html">
+            
+                
+                    <a href="../../docs/usage/Components.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        Writing Form Components
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="docs/usage/Form.html">
+            
+                
+                    <a href="../../docs/usage/Form.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.2.</b>
+                        
+                        Implementing The Form
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="docs/api/index.html">
+            
+                
+                    <a href="../../docs/api/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        API Reference
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="docs/api/Form.html">
+            
+                
+                    <a href="../../docs/api/Form.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Form
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="docs/api/Context.html">
+            
+                
+                    <a href="../../docs/api/Context.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                        Context
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="docs/api/Validation.html">
+            
+                
+                    <a href="../../docs/api/Validation.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.3.</b>
+                        
+                        Validation
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="docs/Todo.html">
+            
+                
+                    <a href="../../docs/Todo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Todo
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="changelog.html">
+            
+                
+                    <a href="../../changelog.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Changelog
+                    </a>
+            
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >Flum</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <h1 id="implementing-the-form">Implementing the Form</h1>
+<p>Now that we understand how data is passed up to the form, we can setup a basic form. Flum&apos;s <code>Form</code> component is just another controlled component which means the
+developer will always have control of the state. </p>
+<p>State validation is only <em>partly</em> handled by the <code>Form</code> component. Flum is not actually a &apos;form&apos; in the general sense and so we do not have a <code>submit</code> hook. 
+This means there is no logical way to automatically run a <code>globalValidation</code> process on state - only <code>localValidation</code> is automatically applied, and is applied
+during the <code>onChange</code> call.</p>
+<p>Here is how we would go about implementing some basic form logic.</p>
+<pre><code class="lang-javascript"><span class="token keyword">import</span> React<span class="token punctuation">,</span> <span class="token punctuation">{</span> Component <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react&apos;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> Form<span class="token punctuation">,</span> FormComponent<span class="token punctuation">,</span> validateState<span class="token punctuation">,</span> flattenState <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&apos;react-context-form&apos;</span>
+
+<span class="token keyword">class</span> <span class="token class-name">App</span> <span class="token keyword">extends</span> <span class="token class-name">Component</span> <span class="token punctuation">{</span>
+
+    state <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+    onChange <span class="token operator">=</span> state <span class="token operator">=</span><span class="token operator">&gt;</span>
+        <span class="token comment" spellcheck="true">/* This is our validated state (localValidation) */</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span>
+
+    submit <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+
+        <span class="token comment" spellcheck="true">/* When the form is &apos;submitted&apos; we want to validate
+         * out state. calling validateState will apply 
+         * all globalValidators to our fields.
+         * */</span>
+        <span class="token keyword">const</span> <span class="token punctuation">{</span>valid<span class="token punctuation">,</span> state<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token function">validateState</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">)</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>valid<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token comment" spellcheck="true">/* At the moment our state is made up of Fields,
+             * which is hard to work with. calling flattenState()
+             * will convert our state from Fields to key =&gt; value
+             * */</span>
+            <span class="token function">post</span><span class="token punctuation">(</span><span class="token function">flattenState</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token function">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>
+            <span class="token operator">&lt;</span>Form state<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>onChange<span class="token punctuation">}</span><span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span>div className<span class="token operator">=</span><span class="token string">&quot;form&quot;</span><span class="token operator">&gt;</span>
+                    <span class="token operator">&lt;</span>FormComponent id<span class="token operator">=</span><span class="token string">&quot;firstName&quot;</span> localValidation<span class="token operator">=</span><span class="token string">&quot;letters&quot;</span> globalValidation<span class="token operator">=</span><span class="token string">&quot;required&quot;</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token punctuation">,</span> onChange<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> 
+                            <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>value <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>FormComponent<span class="token operator">&gt;</span>
+
+                    <span class="token operator">&lt;</span>FormComponent id<span class="token operator">=</span><span class="token string">&quot;password&quot;</span> localValidation<span class="token operator">=</span><span class="token string">&quot;min:10&quot;</span> globalValidation<span class="token operator">=</span><span class="token string">&quot;required&quot;</span> <span class="token operator">&gt;</span>
+                        <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token punctuation">,</span> onChange<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> 
+                            <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>value <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>FormComponent<span class="token operator">&gt;</span>
+
+                    <span class="token operator">&lt;</span>FormComponent id<span class="token operator">=</span><span class="token string">&quot;confirm_password&quot;</span> globalValidation<span class="token operator">=</span><span class="token string">&quot;required|matches:password&quot;</span> <span class="token operator">&gt;</span>
+                        <span class="token punctuation">{</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token punctuation">,</span> onChange<span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> 
+                            <span class="token operator">&lt;</span>input value<span class="token operator">=</span><span class="token punctuation">{</span>value <span class="token operator">||</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">}</span> onChange<span class="token operator">=</span><span class="token punctuation">{</span>e <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token function">onChange</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">}</span> <span class="token operator">/</span><span class="token operator">&gt;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token operator">&lt;</span><span class="token operator">/</span>FormComponent<span class="token operator">&gt;</span>
+
+                    <span class="token operator">&lt;</span>button onClick<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>submit<span class="token punctuation">}</span><span class="token operator">&gt;</span>Register<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+                <span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+            <span class="token operator">&lt;</span><span class="token operator">/</span>Form<span class="token operator">&gt;</span>
+        <span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../docs/usage/Components.html" class="navigation navigation-prev " aria-label="Previous page: Writing Form Components"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../docs/api/index.html" class="navigation navigation-next " aria-label="Next page: API Reference"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-editlink/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-github/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-ga/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"editlink":{"base":"https://github.com/julienvincent/flum/tree/master","label":"edit","multilingual":false},"github":{"url":"https://github.com/julienvincent/flum"},"ga":{"token":"UA-53097839-3","configuration":"auto"},"prism":{},"anchors":{},"search":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
