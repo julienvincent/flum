@@ -129,12 +129,14 @@ export default {
     },
 
     matches({value, args, state}) {
-        const [fieldToMatch] = args
-        const field = state[fieldToMatch] || {}
+        const [path] = args
+        const field = _.get(state, path, {})
         if (field && value == field.value) return {valid: true}
+
+        const split = path.split(".")
         return {
             valid: false,
-            error: `Must match ${fieldToMatch}`
+            error: `Must match ${split[split.length - 1]}`
         }
     }
 }

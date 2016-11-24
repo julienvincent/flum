@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { render } from 'react-dom'
-import _ from 'lodash'
 
 import { Form, FormComponent, validateState, flattenState } from '../src'
 
@@ -34,12 +33,12 @@ class App extends Component {
             <div>
                 <Form state={this.state} onChange={this.onChange}>
                     <div>
-                        <FormComponent id="firstName" localValidation="letters" globalValidation="required">
+                        <FormComponent id="person.firstName" localValidation="letters" globalValidation="required">
                             {({value, onChange}) => <input value={value || ""} onChange={e => onChange(e.target.value)} />}
                         </FormComponent>
 
                         <FormComponent
-                            id="confirm" globalValidation="matches:firstName"
+                            id="confirm" globalValidation="matches:person.firstName"
                             component={Input} />
                     </div>
                 </Form>

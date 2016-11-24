@@ -6,7 +6,8 @@ export type Field = {
     valid: boolean,
     localValidation: ?string,
     globalValidation: ?string,
-    validators: ?{[key: string]: Function}
+    validators: ?{[key: string]: Function},
+    __flum: ?boolean
 }
 
 export type State = {[id: string]: Field}

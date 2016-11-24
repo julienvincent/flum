@@ -61,7 +61,7 @@ type ValidatedState = {
 export const validateState = (state: State): ValidatedState => {
     let valid = true
 
-    const nextState = _.mapValues(state, (field: Field) => {
+    const validate = (field: Field) => {
         const validators = {
             ...Validators,
             ...field.validators
@@ -94,7 +94,15 @@ export const validateState = (state: State): ValidatedState => {
         })
 
         return globalValidatedField
-    })
+    }
+
+    const mapAndValidate = (state: State | Object) =>
+        _.mapValues(state, (data: Field | any) => {
+            if (typeof data !== 'object') return data
+            if (data.__flum) return validate(data)
+            return mapAndValidate(data)
+        })
+    const nextState = mapAndValidate(state)
 
     return {
         valid,

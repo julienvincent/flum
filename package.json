@@ -1,7 +1,7 @@
 {
   "name": "flum",
   "version": "2.0.0",
-  "description": "A forms library for react that provides its API via context",
+  "description": "A state management and validation layer for react forms",
   "main": "lib/index.js",
   "directories": {
     "example": "example"

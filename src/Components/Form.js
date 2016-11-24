@@ -1,6 +1,8 @@
 // @flow
 import { Component, PropTypes } from 'react'
 import { validateField } from '../Utils/Validation'
+import { buildState } from '../Utils/Tools'
+import _ from 'lodash'
 
 import type { Field, State } from '../types'
 
@@ -34,13 +36,15 @@ class Form extends Component {
     onChange = (field: Field, id: string) => {
         const {onChange, state}: {onChange: Function, state: State} = this.props
 
-        onChange({
-            ...state,
-            [id]: validateField(field)
-        })
+        onChange(buildState(state, {
+                ...validateField(field),
+                __flum: true
+            }, id)
+        )
     }
 
-    getField = (id: string): Field => this.props.state[id] || {value: null, error: null}
+    getField = (id: string): Field =>
+        _.get(this.props.state, id, {value: null, error: null})
 
     render() {
         return this.props.children
