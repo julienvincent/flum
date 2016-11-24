@@ -20,11 +20,19 @@ class FormComponent extends Component {
 
     componentWillMount() {
         const {form} = this.context
-        const {id, localValidation, globalValidation, validators, component = {}} = this.props
-
+        const {id} = this.props
         if (!form) throw new Error("FormComponent must be used within the context of a Flum Form")
 
-        form.onChange({
+        form.onChange(this.getDataWithProps(), id)
+    }
+
+    getDataWithProps = () => {
+        const {form} = this.context
+        const {id, localValidation, globalValidation, validators, component = {}} = this.props
+
+        const data = form.getField(id)
+
+        return {
             localValidation,
             globalValidation,
             validators: {
@@ -33,17 +41,17 @@ class FormComponent extends Component {
             },
             value: null,
             error: null,
-            valid: true
-        }, id)
+            valid: true,
+            ...data
+        }
     }
 
     onChange = (value: any) => {
         const {form} = this.context
         const {id} = this.props
-        const data = form.getField(id)
 
         form.onChange({
-            ...data,
+            ...this.getDataWithProps(),
             value
         }, id)
     }

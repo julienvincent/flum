@@ -33,12 +33,12 @@ class App extends Component {
             <div>
                 <Form state={this.state} onChange={this.onChange}>
                     <div>
-                        <FormComponent id="person.firstName" localValidation="letters" globalValidation="required">
+                        <FormComponent id="firstName" localValidation="letters" globalValidation="required">
                             {({value, onChange}) => <input value={value || ""} onChange={e => onChange(e.target.value)} />}
                         </FormComponent>
 
                         <FormComponent
-                            id="confirm" globalValidation="matches:person.firstName"
+                            id="confirm" globalValidation="matches:firstName"
                             component={Input} />
                     </div>
                 </Form>
