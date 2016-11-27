@@ -1,6 +1,6 @@
 {
   "name": "flum",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A state management and validation layer for react forms",
   "main": "lib/index.js",
   "directories": {
