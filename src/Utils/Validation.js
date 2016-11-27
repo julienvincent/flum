@@ -83,9 +83,12 @@ export const validateState = (state: State): ValidatedState => {
 
                 globalValidatedField = {
                     ...localValidatedField,
-                    valid: res.valid ? localValidatedField.valid : false,
-                    error: res.error ? localValidatedField.error : null
+                    valid: res.valid ? localValidatedField.valid : false
                 }
+                globalValidatedField.error = res.error ?
+                    res.error :
+                    (!globalValidatedField.valid ? localValidatedField.error : null)
+                
                 valid = !valid ? valid : globalValidatedField.valid
 
                 return res.valid
