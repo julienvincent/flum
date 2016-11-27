@@ -25,7 +25,11 @@ export const validateField = (field: Field): Field => {
         ...field.validators
     }
 
-    let nextFieldState = {...field}
+    let nextFieldState = {
+        ...field,
+        valid: true,
+        error: null
+    }
 
     splitValidationRule(field.localValidation, (name, args) => {
         const validator = _.find(validators, (validator, key) => key == name)
@@ -88,7 +92,7 @@ export const validateState = (state: State): ValidatedState => {
                 globalValidatedField.error = res.error ?
                     res.error :
                     (!globalValidatedField.valid ? localValidatedField.error : null)
-                
+
                 valid = !valid ? valid : globalValidatedField.valid
 
                 return res.valid
