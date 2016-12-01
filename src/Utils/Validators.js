@@ -73,13 +73,13 @@ export default {
     },
 
     letters({value}) {
-        if (value == '' || /[A-z ]/.test(value)) return {
+        if (value == '' || /^[A-z ]*$/.test(value)) return {
             valid: true
         }
 
         return {
             valid: false,
-            error: "Cannot contain numbers"
+            error: "Cannot contain letters"
         }
     },
 
