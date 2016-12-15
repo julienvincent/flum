@@ -21,7 +21,8 @@
   "author": "Julien Vincent",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.2",
+    "webpack": "^1.14.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

@@ -31,7 +31,7 @@ export const validateField = (field: Field): Field => {
         error: null
     }
 
-    splitValidationRule(field.localValidation, (name, args) => {
+    splitValidationRule(field.validation, (name, args) => {
         const validator = _.find(validators, (validator, key) => key == name)
 
         if (validator && field.value && field.value != "") {
@@ -75,7 +75,7 @@ export const validateState = (state: State): ValidatedState => {
         let globalValidatedField: Field = {...localValidatedField}
         valid = !valid ? valid : localValidatedField.valid
 
-        splitValidationRule(field.globalValidation, (name, args) => {
+        splitValidationRule(field.postValidation, (name, args) => {
             const validator = _.find(validators, (validator, key) => key == name)
 
             if (validator) {

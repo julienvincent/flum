@@ -9,8 +9,8 @@ class FormComponent extends Component {
 
     static propTypes = {
         id: PropTypes.string.isRequired,
-        localValidation: PropTypes.string,
-        globalValidation: PropTypes.string,
+        validation: PropTypes.string,
+        postValidation: PropTypes.string,
         validators: PropTypes.object,
         children: PropTypes.func,
 
@@ -28,13 +28,13 @@ class FormComponent extends Component {
 
     getDataWithProps = () => {
         const {form} = this.context
-        const {id, localValidation, globalValidation, validators, component = {}} = this.props
+        const {id, validation, postValidation, validators, component = {}} = this.props
 
         const data = form.getField(id)
 
         return {
-            localValidation,
-            globalValidation,
+            validation,
+            postValidation,
             validators: {
                 ...validators,
                 ...component.validators || {}

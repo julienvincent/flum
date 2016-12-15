@@ -4,8 +4,8 @@ export type Field = {
     value: ?any,
     error: ?string,
     valid: boolean,
-    localValidation: ?string,
-    globalValidation: ?string,
+    validation: ?string,
+    postValidation: ?string,
     validators: ?{[key: string]: Function},
     __flum: ?boolean
 }
