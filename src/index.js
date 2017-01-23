@@ -1,6 +1,6 @@
 export Form from './Components/Form'
 export FormComponent from './Components/FormComponent'
-export ValidationWrapper from './Components/ValidationWrapper'
+export Validation from './Components/Validation'
 
 export validators from './Utils/Validators'
 export { validateField, validateState } from './Utils/Validation'

@@ -3,72 +3,72 @@ import React, { Component, PropTypes } from 'react'
 export default
 class FormComponent extends Component {
 
-    static contextTypes = {
-        form: PropTypes.object
-    }
+	static contextTypes = {
+		form: PropTypes.object
+	}
 
-    static propTypes = {
-        id: PropTypes.string.isRequired,
-        validation: PropTypes.string,
-        postValidation: PropTypes.string,
-        validators: PropTypes.object,
-        children: PropTypes.func,
+	static propTypes = {
+		id: PropTypes.string.isRequired,
+		validation: PropTypes.string,
+		postValidation: PropTypes.string,
+		validators: PropTypes.object,
+		children: PropTypes.func,
 
-        component: PropTypes.func,
-        componentProps: PropTypes.object
-    }
+		component: PropTypes.func,
+		componentProps: PropTypes.object
+	}
 
-    componentWillMount() {
-        const {form} = this.context
-        const {id} = this.props
-        if (!form) throw new Error("FormComponent must be used within the context of a Flum Form")
+	componentWillMount() {
+		const {form} = this.context
+		const {id} = this.props
+		if (!form) throw new Error("FormComponent must be used within the context of a Flum Form")
 
-        form.onChange(this.getDataWithProps(), id)
-    }
+		form.onChange(this.getDataWithProps(), id)
+	}
 
-    getDataWithProps = () => {
-        const {form} = this.context
-        const {id, validation, postValidation, validators, component = {}} = this.props
+	getDataWithProps = () => {
+		const {form} = this.context
+		const {id, validation, postValidation, validators, component = {}} = this.props
 
-        const data = form.getField(id)
+		const data = form.getField(id)
 
-        return {
-            validation,
-            postValidation,
-            validators: {
-                ...validators,
-                ...component.validators || {}
-            },
-            value: null,
-            error: null,
-            valid: true,
-            ...data
-        }
-    }
+		return {
+			validation,
+			postValidation,
+			validators: {
+				...validators,
+				...component.validators || {}
+			},
+			value: null,
+			error: null,
+			valid: true,
+			...data
+		}
+	}
 
-    onChange = (value: any) => {
-        const {form} = this.context
-        const {id} = this.props
+	onChange = (value: any) => {
+		const {form} = this.context
+		const {id} = this.props
 
-        form.onChange({
-            ...this.getDataWithProps(),
-            value
-        }, id)
-    }
+		form.onChange({
+			...this.getDataWithProps(),
+			value
+		}, id)
+	}
 
-    render() {
-        const {form} = this.context
-        const {id, children, component:Component, componentProps} = this.props
+	render() {
+		const {form} = this.context
+		const {id, children, component:Component, componentProps} = this.props
 
-        const data = form.getField(id)
-        const injectedProps = {
-            id,
-            onChange: this.onChange,
-            value: data.value,
-            error: data.error
-        }
+		const data = form.getField(id)
+		const injectedProps = {
+			id,
+			onChange: this.onChange,
+			value: data.value,
+			error: data.error
+		}
 
-        if (Component) return <Component {...componentProps} {...injectedProps} />
-        return children(injectedProps)
-    }
+		if (Component) return <Component {...componentProps} {...injectedProps} />
+		return children(injectedProps)
+	}
 }
