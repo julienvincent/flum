@@ -4,4 +4,4 @@ export Validation from './Components/Validation'
 
 export validators from './Utils/Validators'
 export { validateField, validateState } from './Utils/Validation'
-export { flattenState } from './Utils/Tools'
+export { flattenState, buildState } from './Utils/Tools'
